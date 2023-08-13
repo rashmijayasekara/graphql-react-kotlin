@@ -8,6 +8,20 @@ type Query{
     getPosts: [Post!]!
     recentPosts(page: Int, size: Int!):[Post!]!
 }
+#
+#It is going to check if there are any mutation \
+#resolvers of the same name and they are going
+#to map,
+# That's why we are creating all the resolvers with the same name of the query
+
+
+type Mutation{
+    addUserInput(addUserInput: AddUserInput!):ID!
+}
+
+input AddUserInput{
+    name: String!
+}
 
 type Event{
     id:ID
