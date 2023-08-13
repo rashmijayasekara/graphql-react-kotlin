@@ -1,0 +1,28 @@
+type Query{
+    helloworld: String
+    greet(name: String!): String!
+    getRandomNumbers: [Int!]!
+    ##    This Int! will never return a null, it will either
+    #    return an empty array instead of a null
+    getEvent: Event!
+    getPosts: [Post!]!
+}
+
+type Event{
+    id:ID
+    eventType: String!
+}
+type Post{
+    id:ID!
+    title: String!
+    description: String
+    author: User
+}
+
+type User{
+    id: ID!
+    name: String!
+    posts: [Post!]!
+}
+
+
