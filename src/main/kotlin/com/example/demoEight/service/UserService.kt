@@ -5,6 +5,7 @@ import com.example.demoEight.repository.PostRepository
 import com.example.demoEight.repository.UserRepository
 import com.example.demoEight.resolver.AddUserInput
 import com.example.demoEight.resolver.User
+import org.springframework.data.domain.PageRequest
 import org.springframework.stereotype.Service
 import java.util.*
 
@@ -29,6 +30,17 @@ class UserService(
 
         user.id?: throw RuntimeException("User id can't be null")
         return user.id
+    }
+
+    fun getUsers(page: Int, size: Int): List<User> {
+        val users=PageRequest.of(page,size);
+        return userRepository.findAll(users).map {
+            User(
+                id=it.id,
+                name = it.name
+            )
+        }.toList()
+
     }
 
 
