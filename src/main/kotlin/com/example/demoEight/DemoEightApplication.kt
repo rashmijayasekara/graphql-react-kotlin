@@ -26,8 +26,18 @@ class DemoEightApplication{
 				description = "Test description",
 				author = user
 			)
+			val postEntity2 = PostEntity(
+				title = "Test title 2",
+				description = "Test description 2",
+				author = user
+			)
+			val postEntity3 = PostEntity(
+				title = "Test title 3",
+				description = "Test description 3",
+				author = user
+			)
 
-			postRepository.save(postEntity)
+			postRepository.saveAll(listOf(postEntity,postEntity2,postEntity3))
 		}
 	}
 }
