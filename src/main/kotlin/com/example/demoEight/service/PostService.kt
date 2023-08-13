@@ -1,7 +1,9 @@
 package com.example.demoEight.service
 
+import com.example.demoEight.model.PostEntity
 import com.example.demoEight.repository.PostRepository
 import com.example.demoEight.repository.UserRepository
+import com.example.demoEight.resolver.AddPost
 import com.example.demoEight.resolver.Post
 import org.springframework.data.domain.PageRequest
 import org.springframework.stereotype.Service
@@ -38,5 +40,22 @@ class PostService(
             )
         }
 
+    }
+
+    fun addPost(addPost: AddPost): Post {
+
+        val findById = userRepository.findById(addPost.authorId).orElseThrow{RuntimeException("UserID is not valid")}
+        val postEntity=PostEntity(
+            title = addPost.title,
+            description = addPost.description,
+            author = findById
+        )
+        val createdPost=postRepository.save(postEntity)
+
+        return Post(
+            id=createdPost.id,
+            title = createdPost.title,
+            description = createdPost.description
+        )
     }
 }

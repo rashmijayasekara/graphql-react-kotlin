@@ -32,12 +32,9 @@ class PostResolver(
     }
 
     @QueryMapping
-    fun recentPosts(@Argument page: Int,@Argument size: Int): List<Post>{
-        return postService.getPosts(page,size)
+    fun recentPosts(@Argument page: Int, @Argument size: Int): List<Post> {
+        return postService.getPosts(page, size)
     }
-
-
-
 
 
     // Field resolver
@@ -55,9 +52,17 @@ class PostResolver(
         val userId = user.id ?: throw RuntimeException("UserId can't be null")
         return postService.getPostByAuthor(userId)
     }
+
+    @MutationMapping
+    fun addPost(@Argument("addPostInput") addPost: AddPost): Post {
+        return postService.addPost(addPost)
+    }
 }
 
 data class Post(
     val id: UUID?, val title: String, val description: String?
 )
 
+data class AddPost(
+    val title: String, val description: String?, val authorId: UUID
+)

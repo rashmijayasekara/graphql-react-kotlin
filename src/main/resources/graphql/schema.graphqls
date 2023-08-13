@@ -18,6 +18,13 @@ type Query{
 
 type Mutation{
     addUserInput(addUserInput: AddUserInput!):ID!
+    addPost(addPostInput: AddPostInput!):Post!
+}
+
+input AddPostInput{
+    title: String!
+    description: String
+    authorId: ID
 }
 
 input AddUserInput{

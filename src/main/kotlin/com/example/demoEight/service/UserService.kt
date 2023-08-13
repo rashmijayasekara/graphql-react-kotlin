@@ -11,13 +11,17 @@ import java.util.*
 
 @Service
 class UserService(
-    private val userRepository: UserRepository, private val postRepository: PostRepository
+    private val userRepository: UserRepository
 ) {
     fun findByPostId(postId: UUID): User {
-        val postEntity = postRepository.findById(postId)
-            .orElseThrow { RuntimeException("Post does not exist for this user postId: $postId") }
+//        val postEntity = postRepository.findById(postId)
+//            .orElseThrow { RuntimeException("Post does not exist for this user postId: $postId") }
+
+        val userEntity =userRepository.findByPostsId(postId)
+
         return User(
-            id = postEntity.author.id, name = postEntity.author.name
+            id = userEntity.id,
+            name = userEntity.name
         )
     }
 
