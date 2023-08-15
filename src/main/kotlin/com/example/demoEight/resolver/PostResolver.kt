@@ -53,6 +53,12 @@ class PostResolver(
         return postService.getPostByAuthor(userId)
     }
 
+    @SchemaMapping(typeName = "User")
+        fun totalPost(user: User):Int{
+            val userId =user.id?: throw RuntimeException("User can't be null")
+            return postService.getPostByAuthor(userId).size
+        }
+
     @MutationMapping
     fun addPost(@Argument("addPostInput") addPost: AddPost): Post {
         return postService.addPost(addPost)

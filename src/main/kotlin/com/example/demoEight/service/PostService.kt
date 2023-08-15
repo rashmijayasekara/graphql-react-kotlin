@@ -58,4 +58,16 @@ class PostService(
             description = createdPost.description
         )
     }
+
+//    fun getPostsByAuthor(userId: UUID): List<Post> {
+//        return postRepository.findAllByAuthorId(userId)
+//            .map {
+//                Post(
+//                    id = it.id,
+//                    title = it.title,
+//                    description = it.description
+//                )
+//            }
+//
+//    }
 }
