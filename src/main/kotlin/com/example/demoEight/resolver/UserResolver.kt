@@ -11,8 +11,8 @@ import java.util.*
 @Controller
 class UserResolver (private val userService: UserService){
     @MutationMapping
-    fun addUserInput(@Argument("addUserInput") userInput: AddUserInput): UUID {
-        return userService.addUser(userInput)
+    fun addUserInput(@Argument("addUserInput") addUserInput: AddUserInput): UUID {
+        return userService.addUser(addUserInput)
     }
 
     //Field Resolver

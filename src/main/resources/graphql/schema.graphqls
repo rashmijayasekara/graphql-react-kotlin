@@ -6,7 +6,7 @@ type Query{
     #    return an empty array instead of a null
     getEvent: Event!
     getPosts: [Post!]!
-    recentPosts(page: Int, size: Int!):[Post!]!
+    recentPosts(page: Int!, size: Int!):[Post!]!
     getUsers(page: Int!, size: Int!):[User!]!
 }
 #
