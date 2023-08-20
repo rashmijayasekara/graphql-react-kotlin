@@ -35,7 +35,14 @@ class UserResolver (private val userService: UserService){
 
     }
 
-    
+    @SchemaMapping(typeName = "Comment")
+
+    fun author(comment: Comment):User{
+        return User(
+            id= UUID.randomUUID(),
+            name = "rashmi"
+        )
+    }
 
 }
 data class User(
