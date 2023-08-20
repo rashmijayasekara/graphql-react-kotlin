@@ -37,8 +37,8 @@ class UserService(
     }
 
     fun getUsers(page: Int, size: Int): List<User> {
-        val users=PageRequest.of(page,size);
-        return userRepository.findAll(users).map {
+        val users=userRepository.findAll(PageRequest.of(page, size))
+        return users.map {
             User(
                 id=it.id,
                 name = it.name
@@ -46,6 +46,16 @@ class UserService(
         }.toList()
 
     }
+//    fun getUsers(page: Int, size: Int): List<User> {
+//        val users=PageRequest.of(page,size);
+//        return userRepository.findAll(users).map {
+//            User(
+//                id=it.id,
+//                name = it.name
+//            )
+//        }.toList()
+//
+//    }
 
 
 }

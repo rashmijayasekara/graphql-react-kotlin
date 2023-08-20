@@ -8,6 +8,7 @@ type Query{
     getPosts: [Post!]!
     recentPosts(page: Int!, size: Int!):[Post!]!
     getUsers(page: Int!, size: Int!):[User!]!
+    getComments(page: Int!, size: Int): [Comment!]!
 }
 #
 #It is going to check if there are any mutation \
@@ -24,7 +25,7 @@ type Mutation{
 input AddPostInput{
     title: String!
     description: String
-    authorId: ID
+    authorId: ID!
 }
 
 input AddUserInput{
@@ -40,6 +41,7 @@ type Post{
     title: String!
     description: String
     author: User
+#    comment:[Comment!]
 }
 
 type User{
@@ -47,6 +49,14 @@ type User{
     name: String!
     posts: [Post!]!
     totalPost: Int!
+#    comment: [Comment!]
+}
+
+type Comment{
+    id: ID!
+    text: String!
+    author: User!
+    post: Post!
 }
 
 

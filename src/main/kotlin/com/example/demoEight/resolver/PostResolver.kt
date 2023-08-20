@@ -1,5 +1,6 @@
 package com.example.demoEight.resolver
 
+import com.example.demoEight.model.PostEntity
 import com.example.demoEight.service.PostService
 import com.example.demoEight.service.UserService
 import org.springframework.graphql.data.method.annotation.Argument
@@ -61,8 +62,15 @@ class PostResolver(
 
     @MutationMapping
     fun addPost(@Argument("addPostInput") addPost: AddPost): Post {
-        return postService.addPost(addPost)
+
+       return postService.addPost(addPost)
+//       PostEntity(
+//            title = addPost.title,
+//            description = addPost.description
+//        )
     }
+
+
 }
 
 data class Post(
