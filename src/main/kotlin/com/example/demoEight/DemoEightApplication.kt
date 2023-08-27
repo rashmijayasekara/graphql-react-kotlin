@@ -2,6 +2,7 @@ package com.example.demoEight
 
 import com.example.demoEight.model.PostEntity
 import com.example.demoEight.model.UserEntity
+import com.example.demoEight.repository.CommentRepository
 import com.example.demoEight.repository.PostRepository
 import com.example.demoEight.repository.UserRepository
 import org.springframework.boot.ApplicationRunner
@@ -14,7 +15,8 @@ class DemoEightApplication{
 	@Bean
 	fun runner(
 		userRepository: UserRepository,
-		postRepository: PostRepository
+		postRepository: PostRepository,
+		commentRepository: CommentRepository
 	): ApplicationRunner {
 		return ApplicationRunner{
 			val user = UserEntity(

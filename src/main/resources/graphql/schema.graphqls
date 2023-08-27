@@ -1,5 +1,6 @@
 type Query{
     helloworld: String
+    helloworld2: String
     greet(name: String!): String!
     getRandomNumbers: [Int!]!
     ##    This Int! will never return a null, it will either
