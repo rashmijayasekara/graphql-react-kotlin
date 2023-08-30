@@ -12,48 +12,38 @@ import org.springframework.boot.runApplication
 import org.springframework.context.annotation.Bean
 
 @SpringBootApplication
-class DemoEightApplication{
-	@Bean
-	fun runner(
-		userRepository: UserRepository,
-		postRepository: PostRepository,
-		commentRepository: CommentRepository
-	): ApplicationRunner {
-		return ApplicationRunner{
-			val user = UserEntity(
-				name = "Test user"
-			)
-			userRepository.save(user)
-			val postEntity = PostEntity(
-				title = "Test title",
-				description = "Test description",
-				author = user
-			)
-			val postEntity2 = PostEntity(
-				title = "Test title 2",
-				description = "Test description 2",
-				author = user
-			)
-			val postEntity3 = PostEntity(
-				title = "Test title 3",
-				description = "Test description 3",
-				author = user
-			)
+class DemoEightApplication {
+    @Bean
+    fun runner(
+        userRepository: UserRepository, postRepository: PostRepository, commentRepository: CommentRepository
+    ): ApplicationRunner {
+        return ApplicationRunner {
+            val user = UserEntity(
+                name = "Test user"
+            )
+            userRepository.save(user)
+            val postEntity = PostEntity(
+                title = "Test title", description = "Test description", author = user
+            )
+            val postEntity2 = PostEntity(
+                title = "Test title 2", description = "Test description 2", author = user
+            )
+            val postEntity3 = PostEntity(
+                title = "Test title 3", description = "Test description 3", author = user
+            )
 
-			postRepository.saveAll(listOf(postEntity,postEntity2,postEntity3))
+            postRepository.saveAll(listOf(postEntity, postEntity2, postEntity3))
 
-			val comment = CommentEntity(
-				text="testing comment",
-				author = user,
-				post = postEntity
-			)
+            val comment = CommentEntity(
+                text = "testing comment", author = user, post = postEntity
+            )
 
-			commentRepository.save(comment)
+            commentRepository.save(comment)
 
-		}
-	}
+        }
+    }
 }
 
 fun main(args: Array<String>) {
-	runApplication<DemoEightApplication>(*args)
+    runApplication<DemoEightApplication>(*args)
 }

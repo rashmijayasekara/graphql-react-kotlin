@@ -9,7 +9,7 @@ import org.springframework.stereotype.Controller
 import java.util.*
 
 @Controller
-class UserResolver (private val userService: UserService){
+class UserResolver(private val userService: UserService) {
     @MutationMapping
     fun addUserInput(@Argument("addUserInput") addUserInput: AddUserInput): UUID {
         return userService.addUser(addUserInput)
@@ -30,18 +30,19 @@ class UserResolver (private val userService: UserService){
     }
 
     @QueryMapping
-    fun getUsers(@Argument page:Int,@Argument size: Int):List<User>{
-        return userService.getUsers(page,size)
+    fun getUsers(@Argument page: Int, @Argument size: Int): List<User> {
+        return userService.getUsers(page, size)
 
     }
 
     @SchemaMapping(typeName = "Comment")
 
-    fun author(comment: Comment):User{
+    fun author(comment: Comment): User {
         return userService.findByCommentId(comment.id)
     }
 
 }
+
 data class User(
     val id: UUID?, val name: String
 )

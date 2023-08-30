@@ -22,13 +22,11 @@ class PostService(
         }
     }
 
-    fun getPosts(page: Int, size: Int): List<Post>{
-        val page=PageRequest.of(page,size)
-        return  postRepository.findAll(page).map {
+    fun getPosts(page: Int, size: Int): List<Post> {
+        val page = PageRequest.of(page, size)
+        return postRepository.findAll(page).map {
             Post(
-                id=it.id,
-                title = it.title,
-                description = it.description
+                id = it.id, title = it.title, description = it.description
             )
         }.toList()
     }
@@ -44,29 +42,23 @@ class PostService(
 
     fun addPost(addPost: AddPost): Post {
 
-        val findById = userRepository.findById(addPost.authorId).orElseThrow{RuntimeException("UserID is not valid")}
-        val postEntity=PostEntity(
-            title = addPost.title,
-            description = addPost.description,
-            author = findById
+        val findById = userRepository.findById(addPost.authorId).orElseThrow { RuntimeException("UserID is not valid") }
+        val postEntity = PostEntity(
+            title = addPost.title, description = addPost.description, author = findById
         )
-        val createdPost=postRepository.save(postEntity)
+        val createdPost = postRepository.save(postEntity)
 
         return Post(
-            id=createdPost.id,
-            title = createdPost.title,
-            description = createdPost.description
+            id = createdPost.id, title = createdPost.title, description = createdPost.description
         )
     }
 
     fun getPostByCommentId(id: UUID?): Post {
-        id?:throw RuntimeException("comment Id can't be null")
-        val postEntity=postRepository.findByCommentsId(id)
+        id ?: throw RuntimeException("comment Id can't be null")
+        val postEntity = postRepository.findByCommentsId(id)
 
         return Post(
-            id=postEntity.id,
-            title = postEntity.title,
-            description = postEntity.description
+            id = postEntity.id, title = postEntity.title, description = postEntity.description
         )
     }
 

@@ -11,12 +11,8 @@ class CommentEntity(
 
     @Column(nullable = false) val text: String,
 
-    @ManyToOne
-    @JoinColumn(name = "author_id")
-    val author: UserEntity,
+    @ManyToOne @JoinColumn(name = "author_id") val author: UserEntity,
 
 
-    @ManyToOne
-    @JoinColumn(name = "post_id")
-    val post:PostEntity
+    @ManyToOne @JoinColumn(name = "post_id") val post: PostEntity
 )

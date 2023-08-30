@@ -42,7 +42,7 @@ type Post{
     title: String!
     description: String
     author: User
-#    comment:[Comment!]
+    comments:[Comment!]!
 }
 
 type User{
@@ -50,7 +50,7 @@ type User{
     name: String!
     posts: [Post!]!
     totalPost: Int!
-#    comment: [Comment!]
+    comments: [Comment!]!
 }
 
 type Comment{

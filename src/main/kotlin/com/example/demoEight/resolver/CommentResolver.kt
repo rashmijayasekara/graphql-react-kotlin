@@ -17,6 +17,16 @@ class CommentResolver(
         return commentService.getComments(page, size)
     }
 
+    @SchemaMapping(typeName = "Post")
+    fun comments(post: Post): List<Comment> {
+        return commentService.getCommentsByPostId(post.id)
+    }
+
+    @SchemaMapping(typeName = "User")
+    fun comments(user: User): List<Comment> {
+        return commentService.getCommentsByUserId(user.id)
+    }
+
 
 }
 

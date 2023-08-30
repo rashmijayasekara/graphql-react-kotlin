@@ -1,8 +1,6 @@
 package com.example.demoEight.resolver
 
-import com.example.demoEight.model.PostEntity
 import com.example.demoEight.service.PostService
-import com.example.demoEight.service.UserService
 import org.springframework.graphql.data.method.annotation.Argument
 import org.springframework.graphql.data.method.annotation.MutationMapping
 import org.springframework.graphql.data.method.annotation.QueryMapping
@@ -55,15 +53,15 @@ class PostResolver(
     }
 
     @SchemaMapping(typeName = "User")
-        fun totalPost(user: User):Int{
-            val userId =user.id?: throw RuntimeException("User can't be null")
-            return postService.getPostByAuthor(userId).size
-        }
+    fun totalPost(user: User): Int {
+        val userId = user.id ?: throw RuntimeException("User can't be null")
+        return postService.getPostByAuthor(userId).size
+    }
 
     @MutationMapping
     fun addPost(@Argument("addPostInput") addPost: AddPost): Post {
 
-       return postService.addPost(addPost)
+        return postService.addPost(addPost)
 //       PostEntity(
 //            title = addPost.title,
 //            description = addPost.description
@@ -71,9 +69,10 @@ class PostResolver(
     }
 
     @SchemaMapping(typeName = "Comment")
-    fun post(comment : Comment):Post{
+    fun post(comment: Comment): Post {
         return postService.getPostByCommentId(comment.id)
     }
+
 
 }
 
