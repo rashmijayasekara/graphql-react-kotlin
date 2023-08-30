@@ -72,11 +72,7 @@ class PostResolver(
 
     @SchemaMapping(typeName = "Comment")
     fun post(comment : Comment):Post{
-        return Post(
-            id=UUID.randomUUID(),
-            title="comment title",
-            description = "comment description"
-        )
+        return postService.getPostByCommentId(comment.id)
     }
 
 }

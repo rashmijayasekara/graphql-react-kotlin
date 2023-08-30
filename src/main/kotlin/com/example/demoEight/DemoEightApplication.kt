@@ -1,5 +1,6 @@
 package com.example.demoEight
 
+import com.example.demoEight.model.CommentEntity
 import com.example.demoEight.model.PostEntity
 import com.example.demoEight.model.UserEntity
 import com.example.demoEight.repository.CommentRepository
@@ -40,6 +41,15 @@ class DemoEightApplication{
 			)
 
 			postRepository.saveAll(listOf(postEntity,postEntity2,postEntity3))
+
+			val comment = CommentEntity(
+				text="testing comment",
+				author = user,
+				post = postEntity
+			)
+
+			commentRepository.save(comment)
+
 		}
 	}
 }

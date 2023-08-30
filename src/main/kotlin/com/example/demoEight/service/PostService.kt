@@ -59,6 +59,17 @@ class PostService(
         )
     }
 
+    fun getPostByCommentId(id: UUID?): Post {
+        id?:throw RuntimeException("comment Id can't be null")
+        val postEntity=postRepository.findByCommentsId(id)
+
+        return Post(
+            id=postEntity.id,
+            title = postEntity.title,
+            description = postEntity.description
+        )
+    }
+
 //    fun getPostsByAuthor(userId: UUID): List<Post> {
 //        return postRepository.findAllByAuthorId(userId)
 //            .map {
