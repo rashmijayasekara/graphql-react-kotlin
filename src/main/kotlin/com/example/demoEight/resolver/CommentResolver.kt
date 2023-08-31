@@ -1,7 +1,9 @@
 package com.example.demoEight.resolver
 
+
 import com.example.demoEight.service.CommentService
 import org.springframework.graphql.data.method.annotation.Argument
+import org.springframework.graphql.data.method.annotation.MutationMapping
 import org.springframework.graphql.data.method.annotation.QueryMapping
 import org.springframework.graphql.data.method.annotation.SchemaMapping
 import org.springframework.stereotype.Controller
@@ -27,9 +29,18 @@ class CommentResolver(
         return commentService.getCommentsByUserId(user.id)
     }
 
+    @MutationMapping
+    fun addComment(@Argument("addCommentInput") addComment: AddCommentDto):Comment{
+        return commentService.addComment(addComment)
+    }
 
 }
 
 data class Comment(
     val id: UUID?, val text: String
+)
+data class AddCommentDto(
+    val text: String,
+    val authorId: UUID,
+    val postId: UUID
 )
