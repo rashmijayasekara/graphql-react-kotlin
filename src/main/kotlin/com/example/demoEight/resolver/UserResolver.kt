@@ -1,6 +1,8 @@
 package com.example.demoEight.resolver
 
 import com.example.demoEight.service.UserService
+import org.slf4j.Logger
+import org.slf4j.LoggerFactory
 import org.springframework.graphql.data.method.annotation.Argument
 import org.springframework.graphql.data.method.annotation.MutationMapping
 import org.springframework.graphql.data.method.annotation.QueryMapping
@@ -25,6 +27,7 @@ class UserResolver(private val userService: UserService) {
 //            id = UUID.randomUUID(),
 //            name = "title =${post.title} id=${post.id}"
 //        )
+       LOGGER.info("Fetching comments for POST ${post.id}")
         val postId = post.id ?: throw RuntimeException("postId can't be null")
         return userService.findByPostId(postId)
     }
@@ -39,6 +42,10 @@ class UserResolver(private val userService: UserService) {
 
     fun author(comment: Comment): User {
         return userService.findByCommentId(comment.id)
+    }
+
+    companion object{
+        val LOGGER: Logger = LoggerFactory.getLogger(this::class.java)
     }
 
 }

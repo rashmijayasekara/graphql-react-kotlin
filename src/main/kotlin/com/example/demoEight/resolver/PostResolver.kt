@@ -1,6 +1,8 @@
 package com.example.demoEight.resolver
 
 import com.example.demoEight.service.PostService
+import org.slf4j.Logger
+import org.slf4j.LoggerFactory
 import org.springframework.graphql.data.method.annotation.Argument
 import org.springframework.graphql.data.method.annotation.MutationMapping
 import org.springframework.graphql.data.method.annotation.QueryMapping
@@ -14,6 +16,7 @@ class PostResolver(
 ) {
     @QueryMapping
     fun getPosts(): List<Post> {
+        LOGGER.info("Fetching posts from the database")
         return postService.getPosts()
         //       return listOf(
 //            Post(
@@ -73,6 +76,9 @@ class PostResolver(
         return postService.getPostByCommentId(comment.id)
     }
 
+    companion object{
+        val LOGGER: Logger = LoggerFactory.getLogger(this::class.java)
+    }
 
 }
 
