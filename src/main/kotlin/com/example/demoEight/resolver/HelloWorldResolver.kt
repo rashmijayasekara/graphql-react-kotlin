@@ -3,11 +3,18 @@ package com.example.demoEight.resolver
 import org.springframework.graphql.data.method.annotation.Argument
 import org.springframework.graphql.data.method.annotation.QueryMapping
 import org.springframework.stereotype.Controller
+import java.time.LocalDate
+import java.time.OffsetDateTime
 import java.util.*
 
 
 @Controller
 class HelloWorldResolver {
+
+    @QueryMapping
+    fun test(@Argument date: LocalDate,@Argument bornAt: OffsetDateTime):String{
+        return "date : $date, bornAt: $bornAt"
+    }
     @QueryMapping // name of this function should match a query. Whenever we are going to fire the helloworld query the corresponding function will return data
     fun helloworld(): String {
         return "Hello World"

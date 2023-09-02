@@ -10,6 +10,7 @@ type Query{
     recentPosts(page: Int!, size: Int!):[Post!]!
     getUsers(page: Int!, size: Int!):[User!]!
     getComments(page: Int!, size: Int): [Comment!]!
+    test(date: Date, bornAt: DateTime): String!
 }
 #
 #It is going to check if there are any mutation \
