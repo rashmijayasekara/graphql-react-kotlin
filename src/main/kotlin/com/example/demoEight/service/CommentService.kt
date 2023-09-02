@@ -6,6 +6,7 @@ import com.example.demoEight.repository.PostRepository
 import com.example.demoEight.repository.UserRepository
 import com.example.demoEight.resolver.AddCommentDto
 import com.example.demoEight.resolver.Comment
+import com.example.demoEight.resolver.Post
 import org.springframework.data.domain.PageRequest
 import org.springframework.graphql.data.method.annotation.Argument
 import org.springframework.graphql.data.method.annotation.MutationMapping
@@ -64,6 +65,16 @@ class CommentService(
             id = createdComment.id,
             text=createdComment.text
         )
+    }
+
+    fun getCommentsByPosts(posts: List<Post>): Map<Post, List<Comment>> {
+        val comments = commentRepository.findAllByPostIds(posts.mapNotNull { it.id }.toList())
+
+        return posts.associateWith { post ->
+            comments.filter { comment -> comment.post.id == post.id }
+                .map { comment -> Comment(id = comment.id, text = comment.text) }.toList()
+
+        }
     }
 
 

@@ -25,17 +25,8 @@ class CommentResolver(
     @BatchMapping
     fun comments(posts:List<Post>):Map<Post,List<Comment>>{
         LOGGER.info("Fetching comments for POST ID ${posts.map { it.id }}")
-        return posts.map {
-            Pair(
-                it,
-                listOf(
-                    Comment(
-                        id = UUID.randomUUID(),
-                        text ="text"
-                    )
-                )
-            )
-        }.toMap()
+
+      return commentService.getCommentsByPosts(posts)
     }
 //    @SchemaMapping(typeName = "Post")
 //    fun comments(post: Post): List<Comment> {
