@@ -12,9 +12,16 @@ import java.util.*
 class HelloWorldResolver {
 
     @QueryMapping
-    fun test(@Argument date: LocalDate,@Argument bornAt: OffsetDateTime):String{
+    fun test(
+             @Argument date: LocalDate,
+             @Argument bornAt: OffsetDateTime,
+             @Argument phoneNumber: String
+    // This regex is going to provide the validation after that
+    // it's going to be mapped into a String
+    ): String {
         return "date : $date, bornAt: $bornAt"
     }
+
     @QueryMapping // name of this function should match a query. Whenever we are going to fire the helloworld query the corresponding function will return data
     fun helloworld(): String {
         return "Hello World"
