@@ -43,6 +43,13 @@ object JwtUtil {
 
     private fun getSecretKey(signedSecret: String): SecretKey = Keys.hmacShaKeyFor(signedSecret.toByteArray(Charsets.UTF_8))
 
-
+    fun validateJwtToken(
+        token: String,
+        signedSecret: String
+    )= Jwts.parserBuilder()
+        .setSigningKey(getSecretKey(signedSecret))
+        .build()
+        .parseClaimsJwt(token)
+        .body
 
 }
