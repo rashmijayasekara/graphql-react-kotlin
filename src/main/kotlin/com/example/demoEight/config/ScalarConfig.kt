@@ -2,6 +2,7 @@ package com.example.demoEight.config
 
 
 import graphql.scalars.ExtendedScalars
+import graphql.schema.GraphQLScalarType
 import graphql.schema.idl.RuntimeWiring
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
